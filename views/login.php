@@ -11,7 +11,7 @@
                 <div class="col-md-6 col-lg-7 d-flex align-items-center">
                   <div class="card-body p-4 p-lg-5 text-black">
 
-                    <form method="" action="">
+                    <form method="POST" action="">
 
                       <div class="d-flex align-items-center mb-3 pb-1">
                         <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
@@ -31,7 +31,7 @@
                       </div>
 
                       <div class="pt-1 mb-4 ">
-                        <button class="btn btn-info btn-lg " type="submit">Se connecter</button>
+                        <button class="btn btn-info btn-lg " type="submit" name="connecter">Se connecter</button>
                         <button class="btn btn-dark btn-lg  ml-2" type="button">S'inscrire</button>
                       </div>
                     </form>
