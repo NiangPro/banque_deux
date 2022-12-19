@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : dim. 18 déc. 2022 à 21:25
+-- Généré le : lun. 19 déc. 2022 à 11:16
 -- Version du serveur : 10.4.27-MariaDB
 -- Version de PHP : 8.1.12
 
@@ -29,11 +29,18 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `compte` (
   `id` int(11) NOT NULL,
-  `numCompte` int(11) NOT NULL,
+  `numCompte` varchar(255) NOT NULL,
   `solde` double NOT NULL,
   `statut` int(11) NOT NULL,
   `iduser` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `compte`
+--
+
+INSERT INTO `compte` (`id`, `numCompte`, `solde`, `statut`, `iduser`) VALUES
+(1, 'cmpt001', 15000, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -45,7 +52,8 @@ CREATE TABLE `historique` (
   `id` int(11) NOT NULL,
   `iduser` int(11) NOT NULL,
   `type` varchar(50) NOT NULL,
-  `montant` double NOT NULL
+  `montant` double NOT NULL,
+  `idCompte` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -70,7 +78,8 @@ CREATE TABLE `personne` (
 
 INSERT INTO `personne` (`id`, `prenom`, `nom`, `tel`, `email`, `password`, `adresse`) VALUES
 (1, 'bassirou', 'niang', '773439837', 'admin@gmail.com', 'admin', 'pikine'),
-(2, 'alioune', 'fall', '784564636', 'alioune@gmail.com', 'client', 'sangalkam');
+(2, 'alioune', 'fall', '784564636', 'alioune@gmail.com', 'client', 'sangalkam'),
+(3, 'Khadija', 'Gueye', '0783123657', 'gueye@gmail.com', 'admin', 'Cambérène 2');
 
 --
 -- Index pour les tables déchargées
@@ -88,7 +97,8 @@ ALTER TABLE `compte`
 --
 ALTER TABLE `historique`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `iduser` (`iduser`);
+  ADD KEY `iduser` (`iduser`),
+  ADD KEY `idCompte` (`idCompte`);
 
 --
 -- Index pour la table `personne`
@@ -104,7 +114,7 @@ ALTER TABLE `personne`
 -- AUTO_INCREMENT pour la table `compte`
 --
 ALTER TABLE `compte`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT pour la table `historique`
@@ -116,7 +126,7 @@ ALTER TABLE `historique`
 -- AUTO_INCREMENT pour la table `personne`
 --
 ALTER TABLE `personne`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Contraintes pour les tables déchargées
@@ -132,7 +142,8 @@ ALTER TABLE `compte`
 -- Contraintes pour la table `historique`
 --
 ALTER TABLE `historique`
-  ADD CONSTRAINT `historique_ibfk_1` FOREIGN KEY (`iduser`) REFERENCES `personne` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `historique_ibfk_1` FOREIGN KEY (`iduser`) REFERENCES `personne` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `historique_ibfk_2` FOREIGN KEY (`idCompte`) REFERENCES `compte` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

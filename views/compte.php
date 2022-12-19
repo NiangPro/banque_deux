@@ -59,12 +59,15 @@
                 <?php foreach($comptes as $c): ?>
                 <tr>
                     <td><?= $c->numCompte ?></td>
-                    <td><?= $c->numCompte ?></td>
-                    <td><?= $c->numCompte ?></td>
-                    <td><?= $c->numCompte ?></td>
-                    <td><?= $c->numCompte ?></td>
-                    <td><?= $c->numCompte ?></td>
-                    <td>Bass</td>
+                    <td><?= $c->prenom ?></td>
+                    <td><?= $c->nom ?></td>
+                    <td><?= $c->tel ?></td>
+                    <td><?= $c->adresse ?></td>
+                    <td><?= $c->solde ?> FCFA</td>
+                    <td>
+                        <a href="" class="btn btn-warning btn-sm rounded"><i class="fa fa-edit"></i></a>
+                        <a href="" class="btn btn-danger btn-sm rounded"><i class="fa fa-trash"></i></a>
+                    </td>
                 </tr>
                 <?php endforeach; ?>
             </tbody>

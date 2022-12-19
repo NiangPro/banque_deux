@@ -17,9 +17,19 @@ if (isset($_POST['connecter'])) {
     }
 }
 
-if (isset($_GET['ajoutCompte'])) {
+if (isset($_POST['ajoutCompte'])) {
+    extract($_POST);
    if (ajouterCompte($numCompte, $solde, $user)) {
-        $_GET['page'] = "compte";
+       return header("Location:?page=compte");
+   }else{
+    die("erreur");
+   }
+}
+
+if (isset($_POST['ajoutClient'])) {
+    extract($_POST);
+   if (ajouterClient($prenom, $nom, $tel, $email, $password, $adresse)) {
+       return header("Location:?page=client");
    }else{
     die("erreur");
    }
@@ -34,6 +44,17 @@ if (isset($_SESSION['user']) && $_SESSION['user'] != null) {
                 $clients = clients();
                 $comptes = comptes();
                 require_once("views/compte.php"); 
+                break;
+            case 'home':
+                require_once("views/home.php"); 
+                break;
+            case 'client':
+                    $clients = clients();
+                    require_once("views/client.php"); 
+                    break;
+            case 'client':
+                $clients = clients();
+                require_once("views/historiques.php"); 
                 break;
             case 'logout':
                     require_once("views/logout.php"); 

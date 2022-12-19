@@ -7,17 +7,27 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav ml-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Accueil <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="?page=home">Accueil <span class="sr-only">(current)</span></a>
+      </li>
+      <?php if(estAdmin($user->email)):  ?>
+      <li class="nav-item">
+        <a class="nav-link" href="?page=compte">Comptes</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="?page=compte">Compte</a>
+        <a class="nav-link" href="?page=client">Clients</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="?page=historique">Historiques</a>
+      </li>
+      <?php else:  ?>
       <li class="nav-item">
         <a class="nav-link" href="#">Depôt</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Retrait</a>
       </li>
+      <?php endif;  ?>
+
       <li class="nav-item">
         <a class="nav-link" href="views/logout.php">Déconnexion</a>
       </li>

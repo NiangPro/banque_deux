@@ -40,11 +40,31 @@ function clients()
     }
 }
 
+function historiques()
+{
+    global $db;
+    try {
+        $req = $db->prepare("SELECT * FROM historique 
+                            WHERE email !=:email");
+
+        $req->execute([
+            'email' => "admin@gmail.com"
+        ]);
+
+        return $req->fetchAll(PDO::FETCH_OBJ);
+    } catch (PDOException $e) {
+        die("Erreur : ".$e->getMessage());
+    }
+}
+
 function comptes()
 {
     global $db;
     try {
-        $req = $db->prepare("SELECT prenom, nom, numCompte, solde FROM compte c, personne p ORDER BY numCompte ASC");
+        $req = $db->prepare("SELECT prenom, nom, numCompte,tel,adresse, solde 
+        FROM compte c, personne p 
+        WHERE c.idUser = p.id
+        ORDER BY numCompte ASC");
 
         $req->execute();
 
@@ -67,4 +87,25 @@ function ajouterCompte($numCompte, $solde, $idUser){
     } catch (PDOException $e) {
         die("Erreur : ".$e->getMessage());
     }
+}
+
+function ajouterClient($prenom, $nom, $tel, $email, $password, $adresse){
+    global $db;
+    try {
+        $req = $db->prepare("INSERT INTO personne VALUES(null, :prenom, :nom, :tel, :email, :mdp, :adresse)");
+        return $req->execute([
+            'prenom' => $prenom,
+            'nom' => $nom,
+            'tel' => $tel,
+            'email' => $email,
+            'mdp' => $password,
+            'adresse' => $adresse,
+        ]);
+    } catch (PDOException $e) {
+        die("Erreur : ".$e->getMessage());
+    }
+}
+
+function estAdmin($email){
+    return $email === "admin@gmail.com";
 }
