@@ -11,14 +11,24 @@
     <div class="card-body">
         <form action="" method="post">
             <div class="form-group">
+                <label for="">N° compte</label>
+                <input type="text"  name="numCompte" class="form-control" placeholder="Numero compte" required>
+            </div>
+            <div class="form-group">
                 <label for="">Utilisateur</label>
-                <select name="user" id="" class="form-control">
+                <select name="user" id="" class="form-control" required>
                     <option value="">Selectionner un client</option>
                     <?php foreach($clients as $c): ?>
                         <option value="<?= $c->id ?>"> <?= $c->prenom." ".$c->nom ?></option>
                     <?php endforeach; ?>
                 </select>
             </div>
+            <div class="form-group">
+                <label for="">Solde</label>
+                <input type="number" value="15000" step="5"  name="solde" class="form-control" min="15000" required>
+            </div>
+            <button type="submit" name="ajoutCompte" class="btn btn-outline-success">Ajouter</button>
+            <button type="reset" class="btn btn-outline-warning">Annuler</button>
         </form>
     </div>
 </div>
@@ -46,15 +56,17 @@
                 </tr>
             </thead>
             <tbody>
+                <?php foreach($comptes as $c): ?>
                 <tr>
-                    <td>compte2345</td>
-                    <td>Bass</td>
-                    <td>Bass</td>
-                    <td>Bass</td>
-                    <td>Bass</td>
-                    <td>Bass</td>
+                    <td><?= $c->numCompte ?></td>
+                    <td><?= $c->numCompte ?></td>
+                    <td><?= $c->numCompte ?></td>
+                    <td><?= $c->numCompte ?></td>
+                    <td><?= $c->numCompte ?></td>
+                    <td><?= $c->numCompte ?></td>
                     <td>Bass</td>
                 </tr>
+                <?php endforeach; ?>
             </tbody>
         </table>
     </div>

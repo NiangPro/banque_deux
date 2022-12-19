@@ -13,19 +13,31 @@ if (isset($_POST['connecter'])) {
     if ($user) {
         $_SESSION['user'] = $user;
     }else{
-
+        
     }
 }
 
-if (isset($_SESSION['user'])) {
+if (isset($_GET['ajoutCompte'])) {
+   if (ajouterCompte($numCompte, $solde, $user)) {
+        $_GET['page'] = "compte";
+   }else{
+    die("erreur");
+   }
+}
+
+if (isset($_SESSION['user']) && $_SESSION['user'] != null) {
     $user = $_SESSION['user'];
     require_once("includes/navbar.php"); 
     if (isset($_GET['page'])) {
         switch ($_GET['page']) {
             case 'compte':
                 $clients = clients();
+                $comptes = comptes();
                 require_once("views/compte.php"); 
                 break;
+            case 'logout':
+                    require_once("views/logout.php"); 
+                    break;
             
             default:
                 require_once("views/home.php"); 

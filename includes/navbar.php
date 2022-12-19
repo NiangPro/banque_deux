@@ -19,7 +19,7 @@
         <a class="nav-link" href="#">Retrait</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Déconnexion</a>
+        <a class="nav-link" href="views/logout.php">Déconnexion</a>
       </li>
     </ul>
     
