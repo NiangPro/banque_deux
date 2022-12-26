@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : lun. 19 déc. 2022 à 11:16
+-- Généré le : lun. 19 déc. 2022 à 11:27
 -- Version du serveur : 10.4.27-MariaDB
 -- Version de PHP : 8.1.12
 
@@ -53,7 +53,8 @@ CREATE TABLE `historique` (
   `iduser` int(11) NOT NULL,
   `type` varchar(50) NOT NULL,
   `montant` double NOT NULL,
-  `idCompte` int(11) NOT NULL
+  `idCompte` int(11) NOT NULL,
+  `dateOpt` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------

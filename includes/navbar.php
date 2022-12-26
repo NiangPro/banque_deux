@@ -17,14 +17,14 @@
         <a class="nav-link" href="?page=client">Clients</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="?page=historique">Historiques</a>
+        <a class="nav-link" href="?page=historique">Transactions</a>
       </li>
       <?php else:  ?>
       <li class="nav-item">
-        <a class="nav-link" href="#">Depôt</a>
+        <a class="nav-link" href="?page=depot">Depôt</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Retrait</a>
+        <a class="nav-link" href="?page=retrait">Retrait</a>
       </li>
       <?php endif;  ?>
 
