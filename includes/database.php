@@ -142,7 +142,7 @@ function allHistoriques($id)
     try {
         $req = $db->prepare("SELECT  prenom,montant, nom,type, dateOpt, numCompte,tel,adresse, solde 
         FROM compte c, personne p, historique h 
-        WHERE  p.id = :id AND c.idUser = :id AND h.iduser = :id
+        WHERE  c.iduser = p.id AND h.iduser = p.id AND h.idCompte = c.id AND p.id = :id
         ORDER BY dateOpt DESC LIMIT 6");
 
         $req->execute([
@@ -161,7 +161,7 @@ function myHistoriques($id, $type)
     try {
         $req = $db->prepare("SELECT  prenom,montant, nom,type, dateOpt, numCompte,tel,adresse, solde 
         FROM compte c, personne p, historique h 
-        WHERE  p.id = :id AND c.idUser = :id AND h.iduser = :id AND type =:typeOp
+        WHERE (c.iduser = p.id AND h.iduser = p.id AND h.idCompte = c.id AND p.id = :id AND type =:typeOp)
         ORDER BY dateOpt DESC LIMIT 6");
 
         $req->execute([
